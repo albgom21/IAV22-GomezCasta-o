@@ -8,12 +8,12 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public Camera main, ghost, singer, general;
+    public Camera main, topCar, singer, general;
 
     private void Start()
     {
         main.enabled = true;
-        ghost.enabled = false;
+        topCar.enabled = false;
         singer.enabled = false;
         general.enabled = false;
     }
@@ -23,28 +23,28 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             main.enabled = true;
-            ghost.enabled = false;
+            topCar.enabled = false;
             singer.enabled = false;
             general.enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             main.enabled = false;
-            ghost.enabled = true;
+            topCar.enabled = true;
             singer.enabled = false;
             general.enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             main.enabled = false;
-            ghost.enabled = false;
+            topCar.enabled = false;
             singer.enabled = true;
             general.enabled = false;
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             main.enabled = false;
-            ghost.enabled = false;
+            topCar.enabled = false;
             singer.enabled = false;
             general.enabled = true;
         }
