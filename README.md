@@ -4,7 +4,28 @@ ALBERTO GÓMEZ CASTAÑO
 ## NOMBRE DEL PROYECTO
 ESTACIONAMIENTO DE AUTOMÓVIL CON IA
 ## VÍDEO DEMOSTRATIVO
+Enlace: 
 ## RESUMEN DEL ENUNCIADO
+### RESUMEN GENERAL
+Construir una IA implicada en el aparcamiento autónomo sobre un juego de coches. El jugador puede moverse libremente con su coche por el mapa. Una vez elegido un hueco para el estacionamiento, el jugador podrá elegir entre aparcar el mismo el coche o por el contrario, dejar que la IA lo haga por él.
+
+### PROYECTO
+Proyecto en Unity que implementa la IA implicada en el aparcamiento de coches, como posible característica de un juego de coches. El jugador podrá mover un coche mediante teclado de la forma más cercana a la realidad siempre con la perspectiva de un juego que no aspira al realismo. Se desarrolla en un mapa en el que haya aparcamientos (huecos entre otros coches ya aparcados). Una vez que el jugador haya probado a aparcar el coche en los huecos que vea, también podrá activar la IA mediante la pulsación de la tecla E y que de esta forma el coche se controle solo para completar el estacionamiento. La implementación se basará en el uso de sensores,  construidos con Raycasts y/o Triggers que ayuden a recoger información del entorno. Esta información será la base sobre la que trabaje la máquina de estados (con la herramienta Bolt) y vaya guiando el proceso de aparcamiento. Además, se contará con un indicador de daños/colisiones ocasionados a otros coches.
+
+Para comprobar la eficiencia de la IA, se implementará un cronómetro que haga ver el tiempo transcurrido por la IA y así poder compararlo al que tarda el jugador en realizar la maniobra de estacionamiento.
+
+_Trabajo de diseño_:
+- Documentación del proyecto y pseudocódigo.
+
+_Funcionalidades_:
+- Crear un mapa lleno de posibles zonas de aparcamiento.
+- Desarrollo de la IA mediante máquina de estados.
+- Contabilizar las veces que el coche ha chocado con otros y mostrarlo en la interfaz.
+- Establecer un cronómetro para ver comparar los resultados de la IA con los del jugador, mostrándolo por pantalla.
+- Activar y desactivar la IA con la pulsación de la tecla E.
+
+Codificar herramientas que permitan establecer de forma rápida ejemplos sobre los que probar el funcionamiento.
+
 ## DESCRIPCIÓN DEL PUNTO DE PARTIDA
 <img src='README images/puntopartida.png'>
 
