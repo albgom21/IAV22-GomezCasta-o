@@ -2,6 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using BehaviorDesigner.Runtime.Tasks;
+using BehaviorDesigner.Runtime;
+using Bolt;
 
 public class CarController : MonoBehaviour
 {
@@ -19,10 +23,20 @@ public class CarController : MonoBehaviour
     public Transform rearLeftWheelTransform;
     public Transform rearRightWheelTransform;
 
-    public float maxSteeringAngle = 30f;
+    public float maxSteeringAngle = 40f;
     public float motorForce = 50f;
     public float brakeForce = 0f;
 
+    private bool stop = false;
+    private bool derecha = false;
+    private bool avanza = false;
+    private float vel = 0.0f;
+    private float der = 0.0f;
+
+    //METODOS PARA BOLT
+    public void setAvanza(bool b, float v) { avanza = b; vel = v; } 
+    public void setDerecha(bool b, float d) { derecha = b; der = d; } 
+    public void setStop(bool b) { stop = b; } 
 
     private void FixedUpdate()
     {
@@ -35,8 +49,16 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        verticalInput = Input.GetAxis("Vertical");       
         isBreaking = Input.GetKey(KeyCode.Space);
+
+        if (avanza)
+            verticalInput = vel;
+        if (derecha)
+            horizontalInput = der; // 1 full derecha // -1 full izquierda
+
+        if (stop)
+            isBreaking = true;
     }
 
     private void HandleSteering()
@@ -47,7 +69,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleMotor()
-    {
+    {        
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
 
@@ -73,5 +95,5 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         trans.rotation = rot;
         trans.position = pos;
-    }
+    }       
 }
