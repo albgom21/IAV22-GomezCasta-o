@@ -36,6 +36,7 @@ public class CarController : MonoBehaviour
     private float vel = 0.0f;
     private float dir = 0.0f;
     private float danio = 0.0f;
+    private float timeActivated = 0.0f;
 
     //METODOS PARA BOLT
     public void setAvanza(bool b, float v) { avanza = b; vel = v; } 
@@ -43,6 +44,7 @@ public class CarController : MonoBehaviour
     public void setStop(bool b) { stop = b; }
     public bool getIA() { return ia; }
     public float getDanio() { return danio; }
+    public float getTimeActivated() { return timeActivated; }
 
     private void Update()
     {
@@ -50,6 +52,7 @@ public class CarController : MonoBehaviour
         {
             ia = !ia;
             textoIA.SetActive(ia);
+            timeActivated = Time.time;
         }
     }
 
