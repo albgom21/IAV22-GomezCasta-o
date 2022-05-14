@@ -28,14 +28,14 @@ public class CarController : MonoBehaviour
     public float brakeForce = 0f;
 
     private bool stop = false;
-    private bool derecha = false;
+    private bool direccion = false;
     private bool avanza = false;
     private float vel = 0.0f;
-    private float der = 0.0f;
+    private float dir = 0.0f;
 
     //METODOS PARA BOLT
     public void setAvanza(bool b, float v) { avanza = b; vel = v; } 
-    public void setDerecha(bool b, float d) { derecha = b; der = d; } 
+    public void setDir(bool b, float d) { direccion = b; dir = d; } 
     public void setStop(bool b) { stop = b; } 
 
     private void FixedUpdate()
@@ -54,8 +54,8 @@ public class CarController : MonoBehaviour
 
         if (avanza)
             verticalInput = vel;
-        if (derecha)
-            horizontalInput = der; // 1 full derecha // -1 full izquierda
+        if (direccion)
+            horizontalInput = dir; // 1 full derecha // -1 full izquierda
 
         if (stop)
             isBreaking = true;
