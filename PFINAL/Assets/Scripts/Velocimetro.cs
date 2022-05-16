@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class Velocimetro : MonoBehaviour
 {
-    public Rigidbody coche;
+    public CarController coche;
     public Text textoKMH;
 
     private float speed = 0.0f;
 
     private void Update()
     {
-        // 3.6f para convertir en kilometros
-        speed = coche.velocity.magnitude * 3.6f;
+        speed = coche.getVelocidad();
 
         if (textoKMH != null)
             textoKMH.text = ((int)speed) + " km/h";      

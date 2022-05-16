@@ -16,6 +16,12 @@ public class CarController : MonoBehaviour
 
     public GameObject textoIA;
 
+    public PosicionRayCast delantera;
+    public PosicionRayCast trasera;
+
+    public Retrovisor izq;
+    public Retrovisor der;
+
     public WheelCollider frontLeftWheelCollider;
     public WheelCollider frontRightWheelCollider;
     public WheelCollider rearLeftWheelCollider;
@@ -29,22 +35,32 @@ public class CarController : MonoBehaviour
     public float motorForce = 50f;
     public float brakeForce = 0f;
 
+    private Rigidbody rb;
     private bool ia = false;
     private bool stop = false;
     private bool direccion = false;
     private bool avanza = false;
+    private bool aparcado = false;
     private float vel = 0.0f;
     private float dir = 0.0f;
     private float danio = 0.0f;
     private float timeActivated = 0.0f;
+    private float mult = 2.0f;
 
     //METODOS PARA BOLT
-    public void setAvanza(bool b, float v) { avanza = b; vel = v; } 
-    public void setDir(bool b, float d) { direccion = b; dir = d; } 
+    public void setAvanza(bool b, float v) { avanza = b; vel = v; }
+    public void setDir(bool b, float d) { direccion = b; dir = d; }
     public void setStop(bool b) { stop = b; }
     public bool getIA() { return ia; }
+    public bool getAparcado() { return aparcado; }
     public float getDanio() { return danio; }
     public float getTimeActivated() { return timeActivated; }
+    public float getVelocidad() { return rb.velocity.magnitude * 3.6f; } // 3.6f para convertir en kilometros
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void Update()
     {
@@ -54,14 +70,26 @@ public class CarController : MonoBehaviour
             textoIA.SetActive(ia);
             timeActivated = Time.time;
         }
+        aparcado = delantera.getDist() > 0.4f && trasera.getDist() > 0.4f &&
+            !izq.getReferencia() && !der.getReferencia();
+    }
+
+    public void reinicio()
+    {
+        ia = false;
+        stop = false;
+        direccion = false;
+        avanza = false;
+        textoIA.SetActive(ia);
+        timeActivated = Time.time;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "APARCADO")
+        if (collision.gameObject.CompareTag("APARCADO"))
         {
             //Sonido de golpe
-            danio += GetComponent<Rigidbody>().velocity.magnitude * 3.6f;
+            danio += rb.velocity.magnitude * 3.6f;
         }
     }
 
@@ -76,11 +104,11 @@ public class CarController : MonoBehaviour
     private void GetInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");       
+        verticalInput = Input.GetAxis("Vertical");
         isBreaking = Input.GetKey(KeyCode.Space);
-             
+
         if (avanza)
-            verticalInput = vel;
+            verticalInput = vel * mult;
         if (direccion)
             horizontalInput = dir; // 1 full derecha // -1 full izquierda
 
@@ -96,7 +124,7 @@ public class CarController : MonoBehaviour
     }
 
     private void HandleMotor()
-    {        
+    {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
 
@@ -122,5 +150,5 @@ public class CarController : MonoBehaviour
         wheelCollider.GetWorldPose(out pos, out rot);
         trans.rotation = rot;
         trans.position = pos;
-    }       
+    }
 }

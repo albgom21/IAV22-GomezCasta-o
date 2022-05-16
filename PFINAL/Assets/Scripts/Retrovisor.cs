@@ -26,6 +26,7 @@ public class Retrovisor : MonoBehaviour
         else
         {
             Debug.DrawRay(transform.position, v * 10f, Color.green);
+            referencia = false;
         }
     }
     public bool getReferencia() { return referencia; }
