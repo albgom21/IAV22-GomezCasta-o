@@ -33,9 +33,9 @@ public class CarController : MonoBehaviour
     public Transform rearLeftWheelTransform;
     public Transform rearRightWheelTransform;
 
-    public float maxSteeringAngle = 40f;
-    public float motorForce = 50f;
-    public float brakeForce = 0f;
+     float maxSteeringAngle = 30f;
+     float motorForce = 500f;
+     float brakeForce = 6000f;
 
     private Rigidbody rb;
     //EN PUBLIC PARA DEPURAR CAMBIAR A PRIVATE
