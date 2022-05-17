@@ -16,6 +16,7 @@ public class CarController : MonoBehaviour
     private bool isBreaking;
 
     public GameObject textoIA;
+    public Transform posBateria;
 
     public PosicionRayCast delantera;
     public PosicionRayCast trasera;
@@ -79,6 +80,7 @@ public class CarController : MonoBehaviour
             timeActivated = Time.time;
         }
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(0);
+        if (Input.GetKeyDown(KeyCode.T)) transform.position = posBateria.position;
 
         aparcado = delantera.getDist() > 0.4f && trasera.getDist() > 0.4f &&
                 !izq.getReferencia() && !der.getReferencia();
