@@ -6,6 +6,7 @@ using UnityEngine.AI;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 using Bolt;
+using UnityEngine.SceneManagement;
 
 public class CarController : MonoBehaviour
 {
@@ -36,11 +37,12 @@ public class CarController : MonoBehaviour
     public float brakeForce = 0f;
 
     private Rigidbody rb;
-    private bool ia = false;
-    private bool stop = false;
-    private bool direccion = false;
-    private bool avanza = false;
-    private bool aparcado = false;
+    //EN PUBLIC PARA DEPURAR CAMBIAR A PRIVATE
+    public bool ia = false;
+    public bool stop = false;
+    public bool direccion = false;
+    public bool avanza = false;
+    public bool aparcado = false;
     private float vel = 0.0f;
     private float dir = 0.0f;
     private float danio = 0.0f;
@@ -67,11 +69,19 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             ia = !ia;
+            if (!ia)
+            {
+                stop = false;
+                direccion = false;
+                avanza = false;
+            }
             textoIA.SetActive(ia);
             timeActivated = Time.time;
         }
+        if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(0);
+
         aparcado = delantera.getDist() > 0.4f && trasera.getDist() > 0.4f &&
-            !izq.getReferencia() && !der.getReferencia();
+                !izq.getReferencia() && !der.getReferencia();
     }
 
     public void reinicio()
