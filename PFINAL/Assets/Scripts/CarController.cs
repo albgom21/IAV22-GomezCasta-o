@@ -57,6 +57,7 @@ public class CarController : MonoBehaviour
     public void setAvanza(bool b, float v) { avanza = b; vel = v; }
     public void setDir(bool b, float d) { direccion = b; dir = d; }
     public void setStop(bool b) { stop = b; }
+    public void setAparcado(bool b) { aparcado = b; }
     public bool getIA() { return ia; }
     public bool getAparcado() { return aparcado; }
     public float getDanio() { return danio; }
