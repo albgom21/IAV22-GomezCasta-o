@@ -21,6 +21,9 @@ public class CarController : MonoBehaviour
     public PosicionRayCast delantera;
     public PosicionRayCast trasera;
 
+    public StateMachine paralelo;
+    public StateMachine bateria;
+
     public Retrovisor izq;
     public Retrovisor der;
 
@@ -63,6 +66,8 @@ public class CarController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        paralelo.enabled = true;
+        bateria.enabled = false;
     }
 
     private void Update()
@@ -80,7 +85,13 @@ public class CarController : MonoBehaviour
             timeActivated = Time.time;
         }
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(0);
-        if (Input.GetKeyDown(KeyCode.T)) transform.position = posBateria.position;
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            transform.position = posBateria.position;
+            transform.rotation = posBateria.rotation;
+            rb.velocity = Vector3.zero;
+        }
+
 
         aparcado = delantera.getDist() > 0.4f && trasera.getDist() > 0.4f &&
                 !izq.getReferencia() && !der.getReferencia();
@@ -102,6 +113,24 @@ public class CarController : MonoBehaviour
         {
             //Sonido de golpe
             danio += rb.velocity.magnitude * 3.6f;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("PARKING"))
+        {
+            paralelo.enabled = false;
+            bateria.enabled = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("PARKING"))
+        {
+            paralelo.enabled = true;
+            bateria.enabled = false;
         }
     }
 
