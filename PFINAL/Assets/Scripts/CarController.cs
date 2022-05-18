@@ -36,11 +36,14 @@ public class CarController : MonoBehaviour
     public Transform rearLeftWheelTransform;
     public Transform rearRightWheelTransform;
 
+    public AudioSource sonidoIA;
+
      float maxSteeringAngle = 30f;
      float motorForce = 500f;
      float brakeForce = 6000f;
 
     private Rigidbody rb;
+    public int limiteVelocidadIA = 7;
     //EN PUBLIC PARA DEPURAR CAMBIAR A PRIVATE
     public bool ia = false;
     public bool stop = false;
@@ -57,7 +60,6 @@ public class CarController : MonoBehaviour
     public void setAvanza(bool b, float v) { avanza = b; vel = v; }
     public void setDir(bool b, float d) { direccion = b; dir = d; }
     public void setStop(bool b) { stop = b; }
-    public void setAparcado(bool b) { aparcado = b; }
     public bool getIA() { return ia; }
     public bool getAparcado() { return aparcado; }
     public float getDanio() { return danio; }
@@ -84,6 +86,7 @@ public class CarController : MonoBehaviour
             }
             textoIA.SetActive(ia);
             timeActivated = Time.time;
+            sonidoIA.Play(); ;
         }
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(0);
         if (Input.GetKeyDown(KeyCode.T))
@@ -147,6 +150,7 @@ public class CarController : MonoBehaviour
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
+        verticalInput /= 2.5f;
         isBreaking = Input.GetKey(KeyCode.Space);
 
         if (avanza)
@@ -169,6 +173,11 @@ public class CarController : MonoBehaviour
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
         frontRightWheelCollider.motorTorque = verticalInput * motorForce;
+        if (avanza&& vel > 0 && getVelocidad() > limiteVelocidadIA)
+        {
+            rb.velocity = new Vector3(0,0, limiteVelocidadIA / 3.6f);
+           // print("REDUCE VEL");
+        }
 
         brakeForce = isBreaking ? 6000f : 0f;
         frontLeftWheelCollider.brakeTorque = brakeForce;

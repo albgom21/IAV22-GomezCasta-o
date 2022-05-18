@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class HuecoBateriaLibre : MonoBehaviour
 {
-    public bool libre;
+    public bool libre = true;
     private void OnTriggerEnter(Collider other)
     {
-        libre = false;
+        if (!other.CompareTag("PARKING"))
+            libre = false;
     }
     private void OnTriggerExit(Collider other)
     {
-        libre = true;
+        if (!other.CompareTag("PARKING"))
+            libre = true;
     }
     public bool getLibre() { return libre; }
 }
