@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class DesapareceUI : MonoBehaviour
 {
-    public float timeWhenDisappear = 5f;
-
+    public float tiempoEnPantalla = 20f;
+    bool once = false;
     private void Update()
-    {
-        if (gameObject.activeSelf && (Time.time >= timeWhenDisappear))
+    {    
+        if (!once && gameObject.activeSelf && (Time.time >= tiempoEnPantalla))
+        {
             gameObject.SetActive(false);
+            once = true;
+        }
     }
 }

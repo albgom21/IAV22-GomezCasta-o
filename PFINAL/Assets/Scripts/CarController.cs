@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
@@ -16,6 +17,7 @@ public class CarController : MonoBehaviour
     private bool isBreaking;
 
     public GameObject textoIA;
+    public Text textoMult;
     public Transform posBateria;
 
     public PosicionRayCast delantera;
@@ -92,11 +94,31 @@ public class CarController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(0);
         if (Input.GetKeyDown(KeyCode.T))
         {
+            ia = false;
+            stop = false;
+            direccion = false;
+            avanza = false;
+            textoIA.SetActive(ia);
             transform.position = posBateria.position;
             transform.rotation = posBateria.rotation;
             rb.velocity = Vector3.zero;
         }
 
+        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            if (ia && mult < 3)
+            {
+                mult += 0.25f;
+                textoMult.text = "x" + mult.ToString();
+            }
+        };
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (ia && mult > 1)
+            {
+                mult -= 0.25f;
+                textoMult.text = "x" + mult.ToString();
+            }
+        };
 
         aparcado = delantera.getDist() > 0.4f && trasera.getDist() > 0.4f &&
                 !izq.getReferencia() && !der.getReferencia();
@@ -117,7 +139,7 @@ public class CarController : MonoBehaviour
         if (collision.gameObject.CompareTag("APARCADO"))
         {
             sonidoGolpe.Play();
-            danio += rb.velocity.magnitude * 3.6f;
+            danio += 1 + rb.velocity.magnitude * 3.6f;
         }
     }
 
