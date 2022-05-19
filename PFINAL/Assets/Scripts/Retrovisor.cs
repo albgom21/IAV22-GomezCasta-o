@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Clase para comprobar referencias al aparcar en paralelo
 public class Retrovisor : MonoBehaviour
 {
+    public bool front;  //  True: raycast hacia delante    False: raycast hacia atras en función del padre
+
     [SerializeField] LayerMask layerMask;
-    bool referencia = false;
-    public bool front;
-    RaycastHit hit;
-    Vector3 v;
+    private bool referencia = false;
+    private RaycastHit hit;
+    private Vector3 v;
 
-
-    void Update()
-    {
+    void Update() {
         if (front)
             v = Vector3.forward;
         else
@@ -29,5 +27,5 @@ public class Retrovisor : MonoBehaviour
             referencia = false;
         }
     }
-    public bool getReferencia() { return referencia; }
+    public bool getReferencia() { return referencia; } // Método para BOLT
 }

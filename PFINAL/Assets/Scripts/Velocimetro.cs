@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 using UnityEngine.UI;
 
+// Clase que muestra por pantalla la velodidad del coche
 public class Velocimetro : MonoBehaviour
 {
     public CarController coche;
@@ -11,8 +9,7 @@ public class Velocimetro : MonoBehaviour
 
     private float speed = 0.0f;
 
-    private void Update()
-    {
+    private void Update(){
         speed = coche.getVelocidad();
 
         if (textoKMH != null)

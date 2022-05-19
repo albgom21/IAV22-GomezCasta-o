@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Clase para mostrar por pantalla el daño a otros coches
 public class DanioUI : MonoBehaviour
 {
     public CarController coche;
@@ -10,8 +9,7 @@ public class DanioUI : MonoBehaviour
 
     private float danio = 0.0f;
 
-    private void Update()
-    {        
+    private void Update() {        
         danio = coche.getDanio();
 
         if (textoDanio != null)

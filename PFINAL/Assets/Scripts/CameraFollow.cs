@@ -1,18 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Clase para seguir al coche, la incorpora la cámara principal
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField] private Vector3 offset;
-    [SerializeField] private Transform target;
-    [SerializeField] private float translateSpeed;
-    [SerializeField] private float rotationSpeed;
+    [SerializeField] private Vector3 offset;       // Vector3 que sirve de margen entre el objeto a seguir y la cámara 
+    [SerializeField] private Transform target;     // Objetivo a seguir 
+    [SerializeField] private float translateSpeed; // Velocidad para seguir la posición del objetivo
+    [SerializeField] private float rotationSpeed;  // Velocidad para seguir la rotación del objetivo
 
     private void FixedUpdate()
     {
-        HandleTranslation();
+        // Mover y rotar la cámara siguiendo al objetivo
+        HandleTranslation(); 
         HandleRotation();
     }
 
@@ -21,6 +20,7 @@ public class CameraFollow : MonoBehaviour
         var targetPosition = target.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPosition, translateSpeed * Time.deltaTime);
     }
+
     private void HandleRotation()
     {
         var direction = target.position - transform.position;

@@ -1,20 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Clase para obtener la referencia necesaria para el estacionamiento en batería
 public class BateriaRayCast : MonoBehaviour
 {
     [SerializeField] LayerMask layerMask;
-    RaycastHit hit;
-    bool referencia = false;
+    private RaycastHit hit;
+
+    private bool referencia = false;
+
     void Update()
     {
+        //Raycast para obtener la referencia al faro más lejano en el estacionamiento en batería
         if (Physics.Raycast(transform.position, Vector3.left, out hit, 5f, layerMask))
         {
-
             Debug.DrawRay(transform.position, Vector3.left * hit.distance, Color.red);
             referencia = true;
-
         }
         else
         {
@@ -23,5 +23,5 @@ public class BateriaRayCast : MonoBehaviour
         }
     }
 
-    public bool getReferencia() { return referencia; }
+    public bool getReferencia() { return referencia; } //Usado en Bolt para comprobar la posición del coche
 }

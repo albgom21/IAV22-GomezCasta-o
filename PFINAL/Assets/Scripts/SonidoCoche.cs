@@ -1,25 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// Clase que simula el sonido del coche según su velocidad mediante el pitch
 public class SonidoCoche : MonoBehaviour
 {
-    AudioSource audioSource;
-    Rigidbody rb;
-
-    private float pitchFromCar;
-    private float minimum = 0.85f;
-    private float maximum = 2f;
-
-    void Start()
-    {
-        rb = gameObject.GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    void Update()
-    {
-        pitchFromCar = Mathf.Lerp(minimum, maximum, (rb.velocity.magnitude * 3.6f / 100));
-        audioSource.pitch = pitchFromCar;
+    private float pitchCar;
+    private float min = 0.85f;
+    private float max = 2f;
+    
+    void Update() {
+        pitchCar = Mathf.Lerp(min, max, (GetComponent<CarController>().getVelocidad() / 100));
+        GetComponent<AudioSource>().pitch = pitchCar;
     }
 }
