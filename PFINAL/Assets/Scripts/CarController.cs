@@ -37,6 +37,7 @@ public class CarController : MonoBehaviour
     public Transform rearRightWheelTransform;
 
     public AudioSource sonidoIA;
+    public AudioSource sonidoGolpe;
 
      float maxSteeringAngle = 30f;
      float motorForce = 500f;
@@ -115,7 +116,7 @@ public class CarController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("APARCADO"))
         {
-            //Sonido de golpe
+            sonidoGolpe.Play();
             danio += rb.velocity.magnitude * 3.6f;
         }
     }
