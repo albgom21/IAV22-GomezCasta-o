@@ -7,24 +7,29 @@ ESTACIONAMIENTO DE AUTOMÓVIL CON IA
 Enlace: 
 ## RESUMEN DEL ENUNCIADO
 ### RESUMEN GENERAL
-Construir una IA implicada en el aparcamiento autónomo sobre un juego de coches. El jugador puede moverse libremente con su coche por el mapa. Una vez elegido un hueco para el estacionamiento, el jugador podrá elegir entre aparcar el mismo el coche o por el contrario, dejar que la IA lo haga por él.
+Construir una IA implicada en el aparcamiento autónomo sobre un juego de coches. El jugador puede moverse libremente con su coche por el mapa. Una vez escogido un hueco para el estacionamiento, el jugador podrá elegir entre aparcar el mismo el coche o por el contrario, dejar que la IA lo haga por él. Para el correcto funcionamiento de la IA, el coche debe encontrarse recto dentro del carril adyacente al hueco. 
 
 ### PROYECTO
-Proyecto en Unity que implementa la IA implicada en el aparcamiento de coches, como posible característica de un juego de coches. El jugador podrá mover un coche mediante teclado de la forma más cercana a la realidad siempre con la perspectiva de un juego que no aspira al realismo. Se desarrolla en un mapa en el que haya aparcamientos (huecos entre otros coches ya aparcados). Una vez que el jugador haya probado a aparcar el coche en los huecos que vea, también podrá activar la IA mediante la pulsación de la tecla E y que de esta forma el coche se controle solo para completar el estacionamiento. La implementación se basará en el uso de sensores,  construidos con Raycasts y/o Triggers que ayuden a recoger información del entorno. Esta información será la base sobre la que trabaje la máquina de estados (con la herramienta Bolt) y vaya guiando el proceso de aparcamiento. Además, se contará con un indicador de daños/colisiones ocasionados a otros coches.
+Proyecto en Unity que implementa la IA implicada en el aparcamiento de coches, tanto en paralelo como en batería, como posible característica de un juego de coches. El jugador podrá mover un coche mediante teclado de la forma más cercana a la realidad siempre con la perspectiva de un juego que no aspira al realismo. Se desarrolla en un mapa en el que hay aparcamientos (huecos entre otros coches ya aparcados) y una zona de Parking para estacionar en batería. Una vez que el jugador haya probado a aparcar el coche en los huecos que vea, también podrá activar la IA mediante la pulsación de la tecla **E** y que de esta forma el coche se controle solo para completar el estacionamiento. La implementación se basará en el uso de sensores,  construidos con Raycasts y/o Triggers que ayuden a recoger información del entorno. Esta información será la base sobre la que trabaje la máquina de estados (con la herramienta Bolt) y vaya guiando el proceso de aparcamiento. La velocidad de IA puede ser modificada una vez esté activa, ya sea para aumentarla o disminuirla. La velocidad del coche al estar bajo el control de la IA se ve capada a una determinada velocidad. La IA se puede activar y desactivar en cualquier momento, pero su funcionamiento correcto exige dejar actuar a la IA de forma ininterrumpida, ya que como elección de diseño, al desactivarla vuelve al estado inicial en lugar de seguir por el estado en el que se apagó. Además, se contará con un indicador de daños/colisiones ocasionados a otros coches.
 
-Para comprobar la eficiencia de la IA, se implementará un cronómetro que haga ver el tiempo transcurrido por la IA y así poder compararlo al que tarda el jugador en realizar la maniobra de estacionamiento.
+Para comprobar la eficiencia de la IA, se implementará un cronómetro que haga ver el tiempo transcurrido mientras actúa la IA y así poder compararlo al que tarda el jugador en realizar la maniobra de estacionamiento, que también tiene un cronómetro que se activa/desactiva con la tecla **C**.
 
 _Trabajo de diseño_:
 - Documentación del proyecto y pseudocódigo.
 
 _Funcionalidades_:
 - Crear un mapa lleno de posibles zonas de aparcamiento.
-- Desarrollo de la IA mediante máquina de estados.
+- Desarrollo de la IA para aparcamiento paralelo mediante una máquina de estados.
+- Desarrollo de la IA para aparcamiento en batería mediante una máquina de estados.
 - Contabilizar las veces que el coche ha chocado con otros y mostrarlo en la interfaz.
 - Establecer un cronómetro para ver comparar los resultados de la IA con los del jugador, mostrándolo por pantalla.
-- Activar y desactivar la IA con la pulsación de la tecla E.
+- Establecer un cronómetro manual para medir los tiempos del jugador, mostrándolo por pantalla.
+- Activar y desactivar la IA con la pulsación de la tecla **E**.
+- Modificar la velocidad de la IA mediante teclado.
 
-Codificar herramientas que permitan establecer de forma rápida ejemplos sobre los que probar el funcionamiento.
+_Codificar herramientas que permitan establecer de forma rápida ejemplos sobre los que probar el funcionamiento_:
+- Tecla **R** para el reinicio de la escena (Volver a zona de estacionamientos en paralelo).
+- Tecla **T** para mover el coche a la zona del Parking (Zona de estacionamientos en batería).
 
 ## DESCRIPCIÓN DEL PUNTO DE PARTIDA
 <img src='README images/puntopartida.png'>
@@ -76,6 +81,10 @@ Comportamientos implementados mediante scripts:
 Diagrama usado en bolt para el estacionamiento en paralelo con referencia (un coche delante y otro detrás)
 <img src='README images/diagramaPasos.png'>
 
+Diagrama usado en bolt para el estacionamiento en batería.
+<img src='README images/diagramaPasosB.png'>
+
+
 Método para la comprobación de referencias del coche mediante Raycast:
 ```
 //Este método puede implementarse de forma similar pero con distinto objetivo según las necesidades
@@ -126,15 +135,48 @@ Freno:
 
 <img src='README images/spacebar.png'>
 
-Activar IA para estacionamiento:
+Activar/desactivar IA para estacionamiento:
 
 <img src='README images/e.png' height="200">
+
+Activar/desactivar cronómetro manual:
+
+<img src='README images/c.png' height="200">
+
+Cambiar cámaras:
+
+<img src='README images/1234.png' height="200">
+
+Mostrar controles:
+
+<img src='README images/h.png' height="200">
+
+Reiniciar:
+
+<img src='README images/r.png' height="200">
+
+Mover coche al Parking:
+
+<img src='README images/t.png' height="200">
+
+Aumentar velocidad IA:
+
+<img src='README images/uparrow.png' height="200">
+
+Disminuir velocidad IA:
+
+<img src='README images/downarrow.png' height="200">
+
+
 
 ## REFERENCIAS
 - Millington, I.: Artificial Intelligence for Games. CRC Press, 3rd Edition (2019)
 - Tutorial para el movimiento simple del coche: https://www.youtube.com/watch?v=Z4HA8zJhGEk&ab_channel=GameDevChef
-- Asset coches: https://assetstore.unity.com/packages/3d/vehicles/land/arcade-free-racing-car-161085
-- Asset mapa: https://assetstore.unity.com/packages/3d/environments/roadways/low-poly-road-pack-67288
+- Recursos:
+    - Asset coches: https://assetstore.unity.com/packages/3d/vehicles/land/arcade-free-racing-car-161085
+    - Asset mapa: https://assetstore.unity.com/packages/3d/environments/roadways/low-poly-road-pack-67288
+    - Asset cielo: https://assetstore.unity.com/packages/3d/simple-sky-cartoon-assets-42373
+    - Asset barreras: https://assetstore.unity.com/packages/3d/environments/urban/concrete-plastic-barrier-72966
 
 ## PROPUESTA
 Desarrollo de un proyecto en Unity que implementa la IA implicada en el aparcamiento de coches, como posible característica de un juego de coches. El jugador podrá mover un coche mediante teclado de la forma más cercana a la realidad siempre con la perspectiva de un juego que no aspira al realismo extremo, en un mapa en el que haya aparcamientos (huecos entre otros coches ya aparcados). Una vez que el jugador haya probado a aparcar el coche en los huecos que vea, también se podrá activar la IA mediante la pulsación de una tecla y que de esta forma el coche se controle solo para completar el estacionamiento. La implementación se basará en el uso de sensores,  implementados con Raycasts y/o Triggers que ayuden a recoger información del entorno para que dicha información se use en una máquina de estados (con la herramienta BOLT) y vaya guiando el proceso de aparcamiento.
