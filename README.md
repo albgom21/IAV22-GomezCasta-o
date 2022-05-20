@@ -8,7 +8,8 @@ ESTACIONAMIENTO DE AUTOMÓVIL CON IA
 
 
 ## VÍDEO DEMOSTRATIVO
-Enlace: 
+Enlace: https://youtu.be/TX5nVR_i0bg
+
 ## RESUMEN DEL ENUNCIADO
 ### RESUMEN GENERAL
 Construir una IA implicada en el aparcamiento autónomo sobre un juego de coches. El jugador puede moverse libremente con su coche por el mapa. Una vez escogido un hueco para el estacionamiento, el jugador podrá elegir entre aparcar el mismo el coche o por el contrario, dejar que la IA lo haga por él. Para el correcto funcionamiento de la IA, el coche debe encontrarse recto dentro del carril adyacente al hueco. 
