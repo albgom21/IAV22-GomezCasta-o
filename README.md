@@ -3,6 +3,10 @@
 ALBERTO GÓMEZ CASTAÑO
 ## NOMBRE DEL PROYECTO
 ESTACIONAMIENTO DE AUTOMÓVIL CON IA
+
+<img src='README images/logo.png' height="200">
+
+
 ## VÍDEO DEMOSTRATIVO
 Enlace: 
 ## RESUMEN DEL ENUNCIADO
@@ -30,6 +34,11 @@ _Funcionalidades_:
 _Codificar herramientas que permitan establecer de forma rápida ejemplos sobre los que probar el funcionamiento_:
 - Tecla **R** para el reinicio de la escena (Volver a zona de estacionamientos en paralelo).
 - Tecla **T** para mover el coche a la zona del Parking (Zona de estacionamientos en batería).
+
+
+Interfaz final:
+
+<img src='README images/interfaz.png'>
 
 ## DESCRIPCIÓN DEL PUNTO DE PARTIDA
 <img src='README images/puntopartida.png'>
@@ -81,8 +90,15 @@ Comportamientos implementados mediante scripts:
 Diagrama usado en bolt para el estacionamiento en paralelo con referencia (un coche delante y otro detrás)
 <img src='README images/diagramaPasos.png'>
 
+Diagrama implementado en Bolt:
+<img src='README images/boltparalelo.png'>
+
+
 Diagrama usado en bolt para el estacionamiento en batería.
 <img src='README images/diagramaPasosB.png'>
+
+Diagrama implementado en Bolt:
+<img src='README images/boltbateria.png'>
 
 
 Método para la comprobación de referencias del coche mediante Raycast:
