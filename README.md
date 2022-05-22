@@ -23,14 +23,14 @@ _Trabajo de diseño_:
 - Documentación del proyecto y pseudocódigo.
 
 _Funcionalidades_:
-- Crear un mapa lleno de posibles zonas de aparcamiento.
-- Desarrollo de la IA para aparcamiento paralelo mediante una máquina de estados.
-- Desarrollo de la IA para aparcamiento en batería mediante una máquina de estados.
-- Contabilizar las veces que el coche ha chocado con otros y mostrarlo en la interfaz.
-- Establecer un cronómetro para ver comparar los resultados de la IA con los del jugador, mostrándolo por pantalla.
-- Establecer un cronómetro manual para medir los tiempos del jugador, mostrándolo por pantalla.
-- Activar y desactivar la IA con la pulsación de la tecla **E**.
-- Modificar la velocidad de la IA mediante teclado.
+- A: Crear un mapa lleno de posibles zonas de aparcamiento.
+- B: Establecer un cronómetro manual para medir los tiempos del jugador, mostrándolo por pantalla.
+- C: Contabilizar las veces que el coche ha chocado con otros y mostrarlo en la interfaz.
+- D: Activar y desactivar la IA con la pulsación de la tecla **E**.
+- E: Desarrollo de la IA para aparcamiento paralelo mediante una máquina de estados.
+- F: Establecer un cronómetro para ver comparar los resultados de la IA con los del jugador, mostrándolo por pantalla.
+- G: Modificar la velocidad de la IA mediante teclado.
+- H: Desarrollo de la IA para aparcamiento en batería mediante una máquina de estados.
 
 _Codificar herramientas que permitan establecer de forma rápida ejemplos sobre los que probar el funcionamiento_:
 - Tecla **R** para el reinicio de la escena (Volver a zona de estacionamientos en paralelo).
